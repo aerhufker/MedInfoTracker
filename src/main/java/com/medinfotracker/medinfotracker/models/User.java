@@ -19,8 +19,6 @@ public class User extends AbstractEntity {
     @OneToOne
     private Profile profile;
 
-
-
     @NotNull
     private String userName;
 
