@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<!--Use fragments.html for consistency across  pages-->
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+    <h1>Medical Information Tracker</h1>
+
+
+    <h2><span th:text="'Hello, ' + ${user_name} + '!'"></span></h2>
+<!--    <h6> Please Use The Navigation Bar To Locate Your Medical Tracking Information</h6>-->
+</div>
+
+<div class="container body-content">
+
+<!--        ADD A LINK HERE TO PROMP USER TO SIGN IN TO GOOGLE CALENDAR AND SEE UPCOMING MEDICAL DATES -->
+
+    <a th:href="@{/login/google}">Access Your Google Calender</a>
+    GET https://www.googleapis.com/calendar/v3/calendars/calendarId/events
+    <br>
+</div>
+<!--UPCOMING EVENTS SHOULD  POPULATE IN  A CHART HERE-->
+
+<div class="container body-content">
+    <a href="addProfile.html"
+       th:href="@{user/addProfile}">Create Your Medical Profile</a>
+    <br>
+    <a href="profileView.html" th:href="@{user/profileView/{id}(id=${id})}">View My Profile</a>
+    <br>
+
+    <a th:href="@{/logout}">Or Logout to Change User</a>
+</div>
+
+</body>
+</html>
+
+

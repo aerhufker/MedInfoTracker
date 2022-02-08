@@ -1,6 +1,5 @@
 package com.medinfotracker.medinfotracker.controllers;
 
-
 import com.medinfotracker.medinfotracker.models.Profile;
 import com.medinfotracker.medinfotracker.models.User;
 import com.medinfotracker.medinfotracker.models.data.ProfileRepository;
@@ -17,27 +16,33 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("user")
-public class UserController {
-
-    @Autowired
-    private UserRepository userRepository;
+@RequestMapping("profile")
+public class ProfileController {
 
     @Autowired
     private ProfileRepository profileRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private AuthenticationController authenticationController;
+
+////    private HandshakeCompletedEvent request;
+//    HttpSession session = request.getSession();
+//    int id = session.getAttribute("id");
+
+
+//    String userName = (String) session.getAttribute("userName");
 
     @GetMapping("")
     public String index(Model model) {
-        model.addAttribute("Title", "User");
-        model.addAttribute("User", userRepository.findAll());
-//        model.addAttribute("profile", profileRepository.findAll());
+        model.addAttribute("Title", "User Profile");
+        model.addAttribute("User Profile", profileRepository.findAll());
         return "index";
     }
 
-    @GetMapping("addProfile")
+    @GetMapping("add")
     public String displayAddProfileForm(Model model) {
 //        model.addAttribute("Username", "${user.userName}");
         model.addAttribute("User Medical Record Name", "Add User Medical Record Name");
@@ -55,16 +60,16 @@ public class UserController {
         model.addAttribute("Known Allergies", "Add Known Allergies");
         model.addAttribute("Medical Conditions", "Add Medical Conditions");
         model.addAttribute(new Profile());
-        return "user/addProfile";
+        return "profile/add";
     }
 
-    @PostMapping("addProfile")
+    @PostMapping("add")
     public String processAddProfileForm(@ModelAttribute @Valid Profile newProfile,
                                         Errors errors, Model model, HttpServletRequest request) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add User Profile Details");
-            return "user/addProfile";
+            return "profile/add";
         }
 
         User user = authenticationController.getUserFromSession(request.getSession());
@@ -77,43 +82,19 @@ public class UserController {
         return "redirect:";
     }
 
+    @GetMapping("view/{id}")
+    public String displayViewProfile(Model model, @PathVariable int id) {
+        model.addAttribute("profile", profileRepository.findAll());
 
-//    @GetMapping("add")
-//    public String displayAddUserForm(Model model) {
-//        model.addAttribute("title", "Add User");
-//        model.addAttribute(new User());
-//        return "user/add";
-//    }
-
-//    @PostMapping("add")
-//    public String processAddUserForm(@ModelAttribute @Valid User newUser,
-//                                         Errors errors, Model model) {
-//
-//        if (errors.hasErrors()) {
-//            model.addAttribute("title", "Add User");
-//            return "user/add";
-//        }
-//
-//        userRepository.save(newUser);
-//        model.addAttribute("user", userRepository.findAll());
-//        return "redirect:";
-//    }
-
-
-//    Should this connect to the user session??
-    @GetMapping("profileView/{id}")
-    public String displayViewUser(Model model, @PathVariable("id") int id) {
-//        model.addAttribute("user", userRepository.findAll());
-
-        Optional optUser = userRepository.findById(id);
-        if (optUser.isPresent()) {
-            User user = (User) optUser.get();
-            model.addAttribute("title", "user: " + ((User) optUser.get()).getId());
-            model.addAttribute("user", user);
-            return "user/profileView";
+        Optional optProfile = profileRepository.findById(id);
+        if (optProfile.isPresent()) {
+            Profile profile = (Profile) optProfile.get();
+            model.addAttribute("title", "User Profile: " + ((Profile) optProfile.get()).getId());
+            model.addAttribute("profile", profile);
+            return "profile/view";
         } else {
-            return "redirect:";
+            return "redirect:..";
         }
-    }
 
+    }
 }
