@@ -17,8 +17,26 @@ import java.util.List;
 public class User extends AbstractEntity {
 
     @OneToOne
+// <<<<<<< MTW1
+//    @JoinColumn(name = "user_id")
+//    private final List<Profile> profile = new ArrayList<>();
     private Profile profile;
 
+//    private EntUserId userId;
+
+
+//    private HandshakeCompletedEvent request;
+//    HttpSession session = request.getSession();
+//    int id = session.getAttribute("id");
+
+//    @NotNull
+//    @JoinColumn(name = "id")
+//    private int id;
+
+// =======
+//     private Profile profile;
+
+// >>>>>>> merging
     @NotNull
     private String userName;
 
@@ -27,14 +45,20 @@ public class User extends AbstractEntity {
 
     public User() {}
 
+// <<<<<<< MTW1
+// =======
 
+// >>>>>>> merging
     public User(String userName, String password) {
         super();
         this.userName = userName;
         this.pwHash = encoder.encode(password);
     }
 
+// <<<<<<< MTW1
+// =======
 
+// >>>>>>> merging
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
     }
@@ -61,4 +85,8 @@ public class User extends AbstractEntity {
 
 
 
+// <<<<<<< MTW1
 }
+// =======
+// }
+// >>>>>>> merging
