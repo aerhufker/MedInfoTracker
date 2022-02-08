@@ -1,3 +1,4 @@
+// <<<<<<< MTW1
 package com.medinfotracker.medinfotracker.models.data;
 
 import com.medinfotracker.medinfotracker.models.User;
@@ -11,3 +12,14 @@ import javax.transaction.Transactional;
 public interface UserRepository extends CrudRepository<User, Integer> {
     User findByUserName(String username);
 }
+// =======
+// //package com.medinfotracker.medinfotracker.models.data;
+// //
+// //
+// //import com.medinfotracker.medinfotracker.models.UserProfile;
+// //import org.springframework.data.repository.CrudRepository;
+// //
+// //public interface UserRepository extends CrudRepository<UserProfile, Integer>{
+// //
+// //}
+// >>>>>>> merging
