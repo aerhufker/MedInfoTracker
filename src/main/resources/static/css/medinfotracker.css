@@ -1,5 +1,7 @@
+
 /*! Copied from techjobs-persistent for framework of css
 */
+
 
 .body-content {
     margin-top: 72px;
@@ -26,17 +28,21 @@ tr:nth-child(odd) {
     margin-right: auto;
 }
 
+
 table.user-profile {
+
     margin: 30px auto;
     border: 1px solid #e4e4e4;
     width: 80%;
 }
+
 
 table.user-profile td:first-child {
     font-weight: bold;
 }
 
 table.user-profile td:last-child {
+
     width: 80%;
 }
 
@@ -46,6 +52,7 @@ label {
 
 .centered {
     text-align: center;
+
 }
 
 p {
@@ -62,4 +69,5 @@ div.user-profile {
     border: 1px solid #e4e4e4;
     width: 80%;
     background-color: #e4e4e4;
+
 }

@@ -1,6 +1,7 @@
 package com.medinfotracker.medinfotracker.controllers;
 
 
+
 import com.medinfotracker.medinfotracker.models.Symptoms;
 import com.medinfotracker.medinfotracker.models.data.SymptomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +64,5 @@ public class SymptomController {
             return "redirect:../";
         }
     }
+
 }
