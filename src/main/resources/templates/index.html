@@ -1,35 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
-<!--<head th:replace="fragments :: head"></head>-->
 
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
 <body>
 
-<!--<div th:replace="fragments :: page-header"></div>-->
-<br>
-<br>
+<!--Use fragments.html for consistency across  pages-->
+<div th:replace="fragments :: page-header"></div>
+
 <div class="container body-content">
-    <h1> Welcome to the Medical Info Tracker</h1>
-    <h2>View medication info by:</h2>
-    <ul>
-        <li th:each="action : ${actions}">
-            <a th:href="@{'/' + ${action.key}}" th:text="${action.value}"></a>
-        </li>
-        <p>Please select an option</p>
-        <ol>
-            <li><a href="symptom/add.html" th:href="@{/symptom/add}">Add a Symptom</a></li>
-<!--            <span class="error" th:error="${symptoms.add}"></span>-->
-<!--            <p class="error" th:errors="${404}"></p>-->
-            <li><a href="symptom/view.html" th:href="@{/symptom/view}">View a list of your tracked symptoms</a></li>
-<!--            <span class="error" th:error="${symptoms.name}"></span>-->
-<!--            <li><a href="condition/add.html" th:href="@{/condition/add}">Add your medical conditions</a></li>-->
-<!--            <span class="error" th:error="${conditions.name}"></span>-->
-<!--            <li><a href="condition/view.html" th:href="@{/condition/view}">View a List of your medical conditions</a></li>-->
-<!--            <span class="error" th:error="${conditions.name}"></span>-->
-            <li><a href="userprofile.html" th:href="@{/userprofile}">See User Profile</a></li>
-        </ol>
-    </ul>
+    <h1>Medical Information Tracker</h1>
+
+
+    <h2><span th:text="'Hello, ' + ${user_name} + '!'"></span></h2>
+<!--    <h6> Please Use The Navigation Bar To Locate Your Medical Tracking Information</h6>-->
+</div>
+
+<div class="container body-content">
+
+<!--        ADD A LINK HERE TO PROMP USER TO SIGN IN TO GOOGLE CALENDAR AND SEE UPCOMING MEDICAL DATES -->
+
+    <a th:href="@{/login/google}">Access Your Google Calender</a>
+    GET https://www.googleapis.com/calendar/v3/calendars/calendarId/events
+    <br>
+</div>
+<!--UPCOMING EVENTS SHOULD  POPULATE IN  A CHART HERE-->
+
+<div class="container body-content">
+    <a href="addProfile.html"
+       th:href="@{user/addProfile}">Create Your Medical Profile</a>
+    <br>
+    <a href="profileView.html" th:href="@{user/profileView/{id}(id=${id})}">View My Profile</a>
+    <br>
+
+    <a th:href="@{/logout}">Or Logout to Change User</a>
 </div>
 
 </body>
+</html>
 
-</html>.
+
